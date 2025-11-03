@@ -8,23 +8,23 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
-    <div className="bg-gray-800 p-4 rounded-lg border border-gray-700 transition-shadow hover:shadow-lg hover:border-pink-500/50">
+    <div className="bg-[#1F2937]/70 p-4 rounded-lg border border-[var(--border-color)] transition-all duration-300 hover:shadow-lg hover:border-[#EC4899]/50 hover:-translate-y-1">
       <div className="flex justify-between items-start">
         <div>
-          <h5 className="font-bold text-gray-100">{product.itemName}</h5>
-          <div className="flex items-center gap-2 text-sm text-gray-400 mt-1">
+          <h5 className="font-bold text-[#E5E7EB]">{product.itemName}</h5>
+          <div className="flex items-center gap-2 text-sm text-[#9CA3AF] mt-1">
             {product.storeType === 'local' ? <StoreIcon /> : <OnlineIcon />}
             <span>{product.storeName}</span>
           </div>
         </div>
-        {product.price && <span className="text-lg font-semibold text-pink-400">{product.price}</span>}
+        {product.price && <span className="text-lg font-semibold text-[#EC4899]">{product.price}</span>}
       </div>
       <div className="mt-3 text-right">
         <a 
           href={product.url} 
           target="_blank" 
           rel="noopener noreferrer" 
-          className="inline-flex items-center gap-2 text-sm font-medium text-violet-400 hover:text-violet-300 transition-colors"
+          className="inline-flex items-center gap-2 text-sm font-medium text-[#8B5CF6] hover:text-white transition-colors"
         >
           <LinkIcon />
           <span>Shop Now</span>

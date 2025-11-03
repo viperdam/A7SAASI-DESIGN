@@ -23,7 +23,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100 font-sans">
+    <div className="min-h-screen bg-transparent text-[#E5E7EB] font-sans">
       <Header 
         language={language} 
         setLanguage={setLanguage} 

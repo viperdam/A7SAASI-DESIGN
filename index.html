@@ -1,25 +1,36 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Style Weaver</title>
+    <title>A7SASSI WEAVER</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+      :root {
+        --bg-primary: #111827; /* Near-black charcoal */
+        --bg-secondary: #1F2937; /* Lighter dark gray for cards */
+        --accent-start: #EC4899; /* Magenta */
+        --accent-end: #8B5CF6; /* Violet */
+        --text-primary: #E5E7EB; /* Off-white */
+        --text-secondary: #9CA3AF; /* Muted gray */
+        --border-color: rgba(107, 114, 128, 0.3); /* Gray-500 with alpha */
+      }
+
       /* For custom scrollbar aesthetics */
       ::-webkit-scrollbar {
         width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #111827; /* gray-900 */
+        background: var(--bg-primary);
       }
       ::-webkit-scrollbar-thumb {
-        background: #4b5563; /* gray-600 */
+        background: var(--bg-secondary);
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #6b7280; /* gray-500 */
+        background: #4b5563; /* gray-600 */
       }
       @keyframes fade-in {
         from { opacity: 0; transform: translateY(10px); }
@@ -41,7 +52,7 @@
 }
 </script>
 </head>
-  <body class="bg-gray-900 text-white">
+  <body class="bg-[#111827] text-[#E5E7EB]" style="background-image: radial-gradient(circle at top right, rgba(139, 92, 246, 0.1), transparent 40%), radial-gradient(circle at bottom left, rgba(236, 72, 153, 0.1), transparent 40%);">
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>

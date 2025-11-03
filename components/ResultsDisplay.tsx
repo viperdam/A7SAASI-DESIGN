@@ -19,24 +19,33 @@ const translations: Record<Language, any> = {
   hi: { title: "आपकी AI-जनित शैलियाँ", concept: "अवधारणा", items: "लुक खरीदें", styleTips: "स्टाइल और ग्रूमिंग टिप्स", startOver: "फिर से शुरू करें", backToPalettes: "दूसरा थीम चुनें", sources: "सूचना सूत्र" },
 };
 
+const SecondaryButton: React.FC<{onClick: () => void, children: React.ReactNode}> = ({ onClick, children }) => (
+    <button
+        onClick={onClick}
+        className="px-6 py-2 border border-[var(--border-color)] bg-transparent text-[#9CA3AF] hover:text-white hover:border-[#8B5CF6] rounded-lg font-bold transition-all text-sm"
+    >
+        {children}
+    </button>
+);
+
 const GroundingCitations: React.FC<{ chunks: GroundingChunk[] }> = ({ chunks }) => {
     if (!chunks || chunks.length === 0) return null;
 
     return (
-        <div className="mt-6 border-t border-gray-700 pt-4">
-            <h5 className="text-sm font-semibold text-gray-400 mb-2">Sources:</h5>
+        <div className="mt-6 border-t border-[var(--border-color)] pt-4">
+            <h5 className="text-sm font-semibold text-[#9CA3AF] mb-2">{translations.en.sources}:</h5>
             <div className="flex flex-wrap gap-2">
                 {chunks.map((chunk, index) => {
                     if (chunk.web && chunk.web.uri) {
                         return (
-                            <a key={`web-${index}`} href={chunk.web.uri} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 bg-gray-700 text-xs text-gray-300 px-2 py-1 rounded-full hover:bg-violet-600 transition-colors">
+                            <a key={`web-${index}`} href={chunk.web.uri} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 bg-[#1F2937] text-xs text-[#9CA3AF] px-2 py-1 rounded-full hover:bg-[#8B5CF6] hover:text-white transition-colors">
                                 <WebIcon /> {chunk.web.title || new URL(chunk.web.uri).hostname}
                             </a>
                         );
                     }
                     if (chunk.maps && chunk.maps.uri) {
                          return (
-                            <a key={`maps-${index}`} href={chunk.maps.uri} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 bg-gray-700 text-xs text-gray-300 px-2 py-1 rounded-full hover:bg-violet-600 transition-colors">
+                            <a key={`maps-${index}`} href={chunk.maps.uri} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 bg-[#1F2937] text-xs text-[#9CA3AF] px-2 py-1 rounded-full hover:bg-[#8B5CF6] hover:text-white transition-colors">
                                 <MapPinIcon /> {chunk.maps.title || 'View on Map'}
                             </a>
                         );
@@ -66,29 +75,19 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({ concepts, onRese
   return (
     <div className="animate-fade-in">
       <div className="text-center mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-violet-400">{t.title}</h2>
+        <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#EC4899] to-[#8B5CF6]">{t.title}</h2>
         <div className="mt-4 flex justify-center gap-4">
-          <button
-            onClick={onBackToPalettes}
-            className="px-6 py-2 bg-violet-700 hover:bg-violet-600 rounded-lg font-bold transition-colors text-sm"
-          >
-            {t.backToPalettes}
-          </button>
-          <button
-            onClick={onReset}
-            className="px-6 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg font-bold transition-colors text-sm"
-          >
-            {t.startOver}
-          </button>
+          <SecondaryButton onClick={onBackToPalettes}>{t.backToPalettes}</SecondaryButton>
+          <SecondaryButton onClick={onReset}>{t.startOver}</SecondaryButton>
         </div>
       </div>
 
       <div className="flex items-center justify-center mb-4">
-        <button onClick={prevConcept} className="p-2 rounded-full bg-gray-800 hover:bg-pink-700 transition-colors">
+        <button onClick={prevConcept} className="p-2 rounded-full bg-[#1F2937] hover:bg-gradient-to-r from-[#EC4899] to-[#8B5CF6] transition-all duration-300">
           <ArrowLeftIcon />
         </button>
-        <span className="mx-4 text-lg font-semibold">{`${t.concept} ${currentIndex + 1} / ${concepts.length}`}</span>
-        <button onClick={nextConcept} className="p-2 rounded-full bg-gray-800 hover:bg-pink-700 transition-colors">
+        <span className="mx-4 text-lg font-semibold w-32 text-center">{`${t.concept} ${currentIndex + 1} / ${concepts.length}`}</span>
+        <button onClick={nextConcept} className="p-2 rounded-full bg-[#1F2937] hover:bg-gradient-to-r from-[#EC4899] to-[#8B5CF6] transition-all duration-300">
           <ArrowRightIcon />
         </button>
       </div>
@@ -100,28 +99,28 @@ export const ResultsDisplay: React.FC<ResultsDisplayProps> = ({ concepts, onRese
                 <img 
                     src={currentConcept.imageUrl} 
                     alt={currentConcept.conceptName} 
-                    className="rounded-2xl shadow-2xl shadow-violet-500/20 object-cover w-full aspect-[3/4]"
+                    className="rounded-2xl shadow-2xl shadow-[#8B5CF6]/20 object-cover w-full aspect-[3/4]"
                 />
             ) : (
-                <div className="rounded-2xl shadow-lg bg-gray-800 w-full aspect-[3/4] flex items-center justify-center">
+                <div className="rounded-2xl shadow-lg bg-[#1F2937] w-full aspect-[3/4] flex items-center justify-center">
                     <p className="text-gray-500">Image not available</p>
                 </div>
             )}
         </div>
 
         {/* Details Column */}
-        <div className="lg:col-span-3 bg-gray-800/50 p-6 rounded-2xl border border-gray-700">
-          <h3 className="text-2xl font-bold text-pink-400">{currentConcept.conceptName}</h3>
-          <p className="text-gray-300 mt-2 mb-6">{currentConcept.description}</p>
+        <div className="lg:col-span-3 bg-[#1F2937]/60 p-6 rounded-2xl border border-[var(--border-color)] backdrop-blur-lg">
+          <h3 className="text-2xl font-bold text-[#EC4899]">{currentConcept.conceptName}</h3>
+          <p className="text-[#9CA3AF] mt-2 mb-6 text-base leading-relaxed">{currentConcept.description}</p>
           
           {currentConcept.styleTipsDescription && (
             <div className="mb-6">
-              <h4 className="text-xl font-semibold text-violet-400 mb-2">{t.styleTips}</h4>
-              <p className="text-gray-400">{currentConcept.styleTipsDescription}</p>
+              <h4 className="text-xl font-semibold text-[#8B5CF6] mb-2">{t.styleTips}</h4>
+              <p className="text-[#9CA3AF] text-base leading-relaxed">{currentConcept.styleTipsDescription}</p>
             </div>
           )}
 
-          <h4 className="text-xl font-semibold text-violet-400 mb-4">{t.items}</h4>
+          <h4 className="text-xl font-semibold text-[#8B5CF6] mb-4">{t.items}</h4>
           <div className="space-y-4 max-h-[50vh] overflow-y-auto pr-2">
             {currentConcept.items && currentConcept.items.length > 0 ? (
                 currentConcept.items.map((item, index) => (

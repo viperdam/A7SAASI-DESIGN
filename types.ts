@@ -2,7 +2,7 @@ import type { Chat } from '@google/genai';
 
 export type Language = 'en' | 'ar' | 'fr' | 'es' | 'zh' | 'hi';
 export type ActivePage = 'weaver' | 'lab' | 'chat';
-export type AppStep = 'input' | 'loadingAnalysis' | 'paletteSelection' | 'loadingOutfits' | 'results';
+export type AppStep = 'input' | 'loadingAnalysis' | 'paletteSelection' | 'adGate' | 'loadingOutfits' | 'results';
 
 export interface PhotoInput {
   base64: string;
