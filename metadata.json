@@ -1,0 +1,8 @@
+{
+  "name": "STYLE 4 ERROR JSON",
+  "description": "An AI-powered personal stylist that generates complete fashion looks, allows image and video editing, and offers real-time chat. It provides realistic style images and direct links to purchase items from both global e-commerce sites and local stores.",
+  "requestFramePermissions": [
+    "microphone",
+    "geolocation"
+  ]
+}
